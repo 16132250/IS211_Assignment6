@@ -203,12 +203,18 @@ class ConversionsCheck(unittest.TestCase):
     '''
 
 class RefactoredCheck(unittest.TestCase):
-    def test_refactoredCelsiusToKelvin(self):
+    def test_refactored_alltests(self):
+        print("C to K")
         assert convert("CELSIUS", "KELVIN", 0) == 273.15
+        print("C to F")
         assert convert("CELSIUS", "FAHRENHEIT", 0) == 32
+        print("F to C")
         assert convert('FAHRENHEIT', 'CELSIUS', 0) == -17.77777777777778
+        print("F to K")
         assert convert('FAHRENHEIT', 'KELVIN', 0) == 255.3722222222222
+        print("K to C")
         assert convert('KELVIN', 'CELSIUS', 0) == -273.15
+        print("K to F")
         assert convert('KELVIN', 'FAHRENHEIT', 0) == -459.67
 
 
