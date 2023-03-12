@@ -9,9 +9,8 @@ from conversions import convertKelvinToFahrenheit
 from conversions_refactored import convert
 
 
-
 class ConversionsCheck(unittest.TestCase):
-    '''
+
     # Tests Celsius to Kelvin Conversions
     def test_convertCelsiusToKelvin_0(self):
         value = convertCelsiusToKelvin(0)
@@ -200,32 +199,97 @@ class ConversionsCheck(unittest.TestCase):
         expected = -1285.87
         self.assertAlmostEqual(value, expected, places=2)
         print('testing ZeroK')
-    '''
 
-class RefactoredCheck(unittest.TestCase):
-    def test_refactored_alltests(self):
-        print("C to K")
-        assert convert("CELSIUS", "KELVIN", 0) == 273.15
+    # Test refactored temp functions
+    def test_refactored_CtoF(self):
         print("C to F")
-        assert convert("CELSIUS", "FAHRENHEIT", 0) == 32
-        print("F to C")
-        assert convert('FAHRENHEIT', 'CELSIUS', 0) == -17.77777777777778
-        print("F to K")
-        assert convert('FAHRENHEIT', 'KELVIN', 0) == 255.3722222222222
-        print("K to C")
-        assert convert('KELVIN', 'CELSIUS', 0) == -273.15
-        print("K to F")
-        assert convert('KELVIN', 'FAHRENHEIT', 0) == -459.67
+        value = convert("CELSIUS", "FAHRENHEIT", 0)
+        expected = 32
+        self.assertEqual(value, expected)
 
 
-
-    '''
-    def test_refactoredCelsiusToKelvin(self):
-        value = convert("Celsius", "Kelvin", 0)
+    def test_refactored_CtoK(self):
+        print("C to K")
+        value = convert("CELSIUS", "KELVIN", 0)
         expected = 273.15
-        self.assertAlmostEqual(value, expected, places=2, msg="tests 0")
-        print('refactored C to K testing 0')
-    '''
+        self.assertEqual(value,expected)
+
+    def test_refactored_FtoC(self):
+        print("F to C")
+        value = convert('FAHRENHEIT', 'CELSIUS', 0)
+        expected = -17.77777777777778
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_FtoK(self):
+        print("F to K")
+        value = convert('FAHRENHEIT', 'KELVIN', 0)
+        expected = 255.3722222222222
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_KtoC(self):
+        print("K to C")
+        value = convert('KELVIN', 'CELSIUS', 0)
+        expected = -273.15
+        self.assertEqual(value, expected)
+
+    def test_refactored_KtoF(self):
+        print("K to F")
+        value = convert('KELVIN', 'FAHRENHEIT', 0)
+        expected = -459.67
+        self.assertAlmostEqual(value, expected, places=2)
+
+    # Test refactored distance functions
+    def test_refactored_MilestoYards(self):
+        print("Miles to Yards")
+        value = convert('MILES', 'YARDS', 1)
+        expected = 1760
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_MilestoMeters(self):
+        print("Miles to Meters")
+        value = convert('MILES', 'METERS', 1)
+        expected = 1609.344
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_YardstoMiles(self):
+        print("Yards to Miles")
+        value = convert('YARDS', 'MILES', 1760)
+        expected = 1
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_YardtoMeters(self):
+        print("Yards to Meters")
+        value = convert('YARDS', 'METERS', 1)
+        expected = 0.9144
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_MeterstoMiles(self):
+        print("Meters to Miles")
+        value = convert('METERS', 'MILES', 1609.344)
+        expected = 1
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_MeterstoYards(self):
+        print("Meters to Yards")
+        value = convert('METERS', 'YARDS', 1)
+        expected = 1.0936
+        self.assertAlmostEqual(value, expected, places=2)
+
+    def test_refactored_same_units(self):
+        print("test same units")
+        assert convert('FAHRENHEIT', 'FAHRENHEIT', 32) == 32
+        assert convert('CELSIUS', 'CELSIUS', 100) == 100
+        assert convert('KELVIN', 'KELVIN', 273.15) == 273.15
+        assert convert('MILES', 'MILES', 10) == 10
+        assert convert('YARDS', 'YARDS', 100) == 100
+        assert convert('METERS', 'METERS', 500) == 500
+
+    def test_bad_request(self):
+        print("Meters to Kelvin")
+        value = convert('METERS', 'KELVIN', 1)
+        expected = None
+        self.assertEqual(value, expected)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
