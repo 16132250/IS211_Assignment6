@@ -28,6 +28,7 @@ def convertCelsiusToFahrenheit(celsius):
         return fahrenheit
 
     except TypeError:
+        pass
         print("Must use a numeric value")
 
 def convertFahrenheitToCelsius(fahrenheit):
@@ -37,10 +38,12 @@ def convertFahrenheitToCelsius(fahrenheit):
     :param fahrenheit:
     :return:
     """
+    try:
+        celsius = float((fahrenheit - 32) * 5 / 9)
+        return celsius
 
-    celsius = 0
-
-    return celsius
+    except TypeError:
+        print("Must use a numeric value")
 
 def convertFahrenheitToKelvin(fahrenheit):
     """
@@ -49,45 +52,42 @@ def convertFahrenheitToKelvin(fahrenheit):
     :param fahrenheit:
     :return:
     """
+    try:
+        kelvin = float((fahrenheit + 459.67) * 5 / 9)
+        return kelvin
 
-    kelvin = 'k'
+    except TypeError:
+        print("Must use a numeric value")
 
-    return kelvin
-
-def convertKelvinToCelsius(fahrenheit):
+def convertKelvinToCelsius(kelvin):
     """
     Convert Kelvin to Celsius
 
     :param :
     :return:
     """
+    try:
+        celsius = kelvin - 273.15
 
-    celsius = 0
+        return celsius
 
-    return celsius
+    except TypeError:
+        print("Must use a numeric value")
 
-def convertKelvinToFahrenheit(fahrenheit):
+def convertKelvinToFahrenheit(kelvin):
     """
-    Convert Kelvin to Celsius
+    Convert Kelvin to Fahrenheit
 
     :param :
     :return:
     """
+    try:
+        fahrenheit = 1.8 * (kelvin - 273.15) + 32
 
-    celsius = 0
+        return fahrenheit
 
-    return celsius
+    except TypeError:
+        print("Must use a numeric value")
 
-
-'''
-Celsius to Kelvin
-Celsius to Fahrenheit
-
-Fahrenheit to Celsius
-Fahrenheit to Kelvin
-
-Kelvin to Celsius
-Kelvin to Fahrenheit
-'''
 
 
