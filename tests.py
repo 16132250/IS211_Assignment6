@@ -6,11 +6,12 @@ from conversions import convertFahrenheitToCelsius
 from conversions import convertFahrenheitToKelvin
 from conversions import convertKelvinToCelsius
 from conversions import convertKelvinToFahrenheit
-
 from conversions_refactored import convert
 
-class ConversionsCheck(unittest.TestCase):
 
+
+class ConversionsCheck(unittest.TestCase):
+    '''
     # Tests Celsius to Kelvin Conversions
     def test_convertCelsiusToKelvin_0(self):
         value = convertCelsiusToKelvin(0)
@@ -199,32 +200,26 @@ class ConversionsCheck(unittest.TestCase):
         expected = -1285.87
         self.assertAlmostEqual(value, expected, places=2)
         print('testing ZeroK')
+    '''
+
+class RefactoredCheck(unittest.TestCase):
+    def test_refactoredCelsiusToKelvin(self):
+        assert convert("CELSIUS", "KELVIN", 0) == 273.15
+        assert convert("CELSIUS", "FAHRENHEIT", 0) == 32
+        assert convert('FAHRENHEIT', 'CELSIUS', 0) == -17.77777777777778
+        assert convert('FAHRENHEIT', 'KELVIN', 0) == 255.3722222222222
+        assert convert('KELVIN', 'CELSIUS', 0) == -273.15
+        assert convert('KELVIN', 'FAHRENHEIT', 0) == -459.67
 
 
 
+    '''
+    def test_refactoredCelsiusToKelvin(self):
+        value = convert("Celsius", "Kelvin", 0)
+        expected = 273.15
+        self.assertAlmostEqual(value, expected, places=2, msg="tests 0")
+        print('refactored C to K testing 0')
+    '''
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-
-    '''
-    def test_convertCelsiusToFahrenheit(self):
-        value = convertCelsiusToFahrenheit(0)
-        expected = 32
-        self.assertAlmostEqual(value, expected, places=2)
-
-
-    def test_convertCelsiusToFahrenheit_2(self):
-        value = convertCelsiusToKelvin(300.)
-        expected = 572.0
-        self.assertAlmostEqual(value, expected, places=2)
-
-    # TODO: Add tests for the new functions to convert F to C and F to K
-
-    def test_convert_CelsiusToKelvin(self):
-        value = convert("Celsius", "Kelvin", 0)
-        expected = 273.15
-        self.assertAlmostEqual(value, expected, places=2)
-
-    # TODO: Add tests for the new functions to convert temperatures and distances
-
-    '''
